@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <label for="imie"> Imie:
+            <input type="text" id="imie" name="imie" placeholder="Imie">
+        </label>
+        <label for="nazwisko"> Nazwisko:
+            <input type="text" id="nazwisko" name="nazwisko" placeholder="Nazwisko">
+        </label>
+        <label for="dataurodzenia">Data urodzenia:
+            <input type="date" id="data" name="data" placeholder="Data">
+        </label>
+        <label for="email">E-mail:
+            <input type="text" id="email" name="email" placeholder="email">
+        </label>
+        <label for="phone">Numer telefonu:
+            <input type="text" id="phone" name="phone" placeholder="telefon">
+        </label>
+        <label for="haslo">
+            Hasło:
+            <input type="password" id="haslo" name="haslo" placeholder="haslo">
+        </label>
+        <label for="powtorzhaslo">
+            Powtórz hasło:
+            <input type="password" id="powtorzhaslo" name="powtorzhaslo" placeholder="Powtórz hasło">
+        </label>
+        <input type="submit" id="Rejestruj">
+
+    </form>
+    <div id="podsumowanie"></div>
+
+    <script>
+        let poleImie = document.getElementById('imie');
+        poleImie.addEventListener('input', function () {
+            let imie = poleImie.value;
+
+            if (imie.length == 0) {
+                event.preventDefault();
+                poleImie.style.borderColor = 'red';
+            } else {
+                event.preventDefault();
+                poleImie.style.borderColor = 'green';
+            }
+        });
+
+        let poleNazwisko = document.getElementById('nazwisko');
+        poleNazwisko.addEventListener('input', function () {
+            let nazwisko = poleNazwisko.value;
+
+            if (nazwisko.length == 0) {
+                event.preventDefault();
+                poleNazwisko.style.borderColor = 'red';
+            } else {
+                event.preventDefault();
+                poleNazwisko.style.borderColor = 'green';
+            }
+        });
+
+        let poleData = document.getElementById('data');
+        poleData.addEventListener('input', function () {
+            let data = poleData.value;
+
+            if (data.length == 0) {
+                event.preventDefault();
+                poleData.style.borderColor = 'red';
+            } else {
+                event.preventDefault();
+                poleData.style.borderColor = 'green';
+            }
+        });
+
+        let poleEmail = document.getElementById('email');
+        poleEmail.addEventListener('input', function () {
+            let email = poleEmail.value;
+
+            if (email.includes('@') && email.includes('.')) {
+                event.preventDefault();
+                poleEmail.style.borderColor = 'green';
+            } else {
+                event.preventDefault();
+                poleEmail.style.borderColor = 'red';
+            }
+        });
+
+        let poleTelefon = document.getElementById('phone');
+        poleTelefon.addEventListener('input', function () {
+            let telefon = document.getElementById('phone').value;
+
+            if (telefon.length == 9 && !isNaN(telefon)) {
+                event.preventDefault();
+                poleTelefon.style.borderColor = 'green';
+            } else {
+                event.preventDefault();
+                poleTelefon.style.borderColor = 'red';
+            }
+        });
+
+        let poleHaslo = document.getElementById('haslo');
+        poleHaslo.addEventListener('input', function () {
+            let haslo = poleHaslo.value;
+
+            if (haslo.length >= 8 && /\d/.test(haslo)) {
+                event.preventDefault();
+                poleHaslo.style.borderColor = 'green';
+            } else {
+                event.preventDefault();
+                poleHaslo.style.borderColor = 'red';
+            }
+        });
+
+        let polepHaslo = document.getElementById('powtorzhaslo');
+        polepHaslo.addEventListener('input', function () {
+            let haslo = document.getElementById('haslo').value;
+            let powtorzhaslo = document.getElementById('powtorzhaslo').value;
+
+            if (haslo == powtorzhaslo) {
+                event.preventDefault();
+                polepHaslo.style.borderColor = 'green';
+            } else {
+                event.preventDefault();
+                polepHaslo.style.borderColor = 'red';
+            }
+        });
+
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+
+            let imie = document.getElementById('imie').value;
+            let nazwisko = document.getElementById('nazwisko').value;
+            let dataUrodzenia = document.getElementById('data').value;
+            let email = document.getElementById('email').value;
+            let telefon = document.getElementById('phone').value;
+
+            let podsumowanie = `
+        <h2>Podsumowanie:</h2>
+        <p>Imię: ${imie}</p>
+        <p>Nazwisko: ${nazwisko}</p>
+        <p>Data urodzenia: ${dataUrodzenia}</p>
+        <p>E-mail: ${email}</p>
+        <p>Numer telefonu: ${telefon}</p>
+    `;
+            if (poleImie.style.borderColor == 'green' && poleNazwisko.style.borderColor == 'green' && poleData.style.borderColor == 'green' && poleEmail.style.borderColor == 'green' && poleTelefon.style.borderColor == 'green' && poleHaslo.style.borderColor == 'green' && polepHaslo.style.borderColor == 'green') {
+                document.getElementById('podsumowanie').innerHTML = podsumowanie;
+
+                document.getElementById('form').style.display = 'none';
+            } else {
+                alert('Wypełnij poprawnie formularz');
+            }
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>

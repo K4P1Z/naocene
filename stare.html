@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="przycisk" onclick="zad1()">
+        Przycisk1
+    </button>
+
+    <button id="przycisk1">
+        Przycisk2
+    </button>
+    <form id="form">
+        <input type="text" name="imie" id="imie" placeholder="imie">
+        <input type="text" name="nazwisko" id="nazwisko" placeholder="nazwisko">
+        <input type="password" id="haslo" name="haslo" placeholder="haslo">
+        <input type="password" id="hasloconfirm" name="hasloconfirm" placeholder="Potwierdz haslo">
+        <input type="date" id="data" name="data" placeholder="data urodzenia">
+        <input type="text" id="phone" name="phone" placeholder="Telefon">
+        <input type="text" id="wiek" name="wiek" placeholder="wiek">
+        <input type="email" id="email" name="email" placeholder="email">
+        <input type="text" id="adres" name="adres" placeholder="adres">
+        <input type="text" id="pesel" name="pesel" placeholder="pesel">
+        <button id="submit" type="submit">Submit</button>
+    </form>
+    
+
+    <script>
+        function zad1() {
+            let przycisk = document.getElementById('przycisk');
+            przycisk.addEventListener('click', function (event) {
+                console.log('Kliknięto przycisk na pozycji X:', event.clientX, 'Y:',
+                    event.clientY);
+            });
+        };
+
+        function zad2() {
+            let przycisk1 = document.getElementById('przycisk1');
+
+            przycisk1.addEventListener('mouseover', function (event) {
+                przycisk1.style.color = "red";
+            });
+            przycisk1.addEventListener('mouseout', function (event) {
+                przycisk1.style.color = "white";
+            });
+
+        }
+        zad2();
+
+       
+            let formularz = document.getElementById('form');
+            formularz.addEventListener('submit', function (event) {
+                
+
+                let imie = document.getElementById('imie').value;
+                let haslo = document.getElementById('haslo').value;
+                let wiek = document.getElementById('wiek').value;
+                let hasloconfirm = document.getElementById('hasloconfirm').value;
+                let email = document.getElementById('email').value;
+                let phone = document.getElementById('phone').value;
+                let adres = document.getElementById('adres').value;
+
+                if (imie.length == 0 && nazwisko.length == 0) {
+                    event.preventDefault();
+                    alert('Prosze wprowadzic imie');
+                } else if (haslo.length < 8 && !/\d/.test(haslo)){
+                    event.preventDefault();
+                    alert("haslo ma za malo znakow albo nie posiada liczb")
+                } else if (isNaN(wiek) && wiek >= 18 && wiek <=100 ){
+                    event.preventDefault();
+                    alert("wiek musi byc wiekszy od 18 i mniejszy od 100")
+                } else if(haslo != hasloconfirm){
+                    event.preventDefault();
+                    alert("Hasla musza byc identyczne")
+                }else if(email === "" || !email.includes('@') && !email.includes('.')){
+                    event.preventDefault();
+                    alert("Wprowadz poprawny email")
+                } else if(imie.length == 0 && nazwisko.length == 0 && email.length == 0){
+                    event.preventDefault();
+                    imie.style.color= "red";
+                    nazwisko.stye.color= "red";
+                    email.style.color= "red";
+                } else if(phone.length == 9){
+                    alert("Numer telefonu musi miec 9 znakow")
+                } else if(adres.length == 0){
+
+                } else{
+
+                }
+
+            });
+            
+
+
+        
+    </script>
+</body>
+
+</html>
